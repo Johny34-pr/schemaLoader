@@ -7,7 +7,7 @@ namespace jsonBetolto
 {
     public class TournamentSchema
     {
-        public Dictionary<int, Dictionary<int, string>> Configurations { get; set; }
+        public Dictionary<int, Dictionary<int, string>> Configurations { get; set; } = new();
         public string TournamentName { get; set; }
         public List<Round> Rounds { get; set; }
 
@@ -17,44 +17,50 @@ namespace jsonBetolto
                 throw new FileNotFoundException($"Konfigurációs fájl nem található {configFilePath}!");
 
             string json = File.ReadAllText(configFilePath);
+
+            if (string.IsNullOrEmpty(json))
+                throw new Exception("A JSON fájl üres vagy érvénytelen.");
+
             return JsonConvert.DeserializeObject<TournamentSchema>(json);
         }
 
-        public Dictionary<int, string> GetPlayersForRound(int roundNumber)
+        public List<string> GetAdvancingPlayers(string group, List<string> players, int groupSize)
         {
-            var round = Rounds.Find(r => r.RoundNumber == roundNumber);
+            var advancingPlayers = new List<string>();
 
-            if (round == null)
+            // Keresés a megfelelő szabályok között, hogy megtaláljuk a csoportmérethez illeszkedő szabályt
+            var round = Rounds?.FirstOrDefault(r => r.RoundNumber == 1); // Az 1. forduló keressük, mivel itt vannak a csoportok
+            var rule = round?.QualificationRules?.FirstOrDefault(r => r.Criteria.GroupSize == groupSize);
+
+            // Ha nem találunk szabályt, akkor dobunk egy hibát
+            if (rule == null)
             {
-                throw new ArgumentException($"Nem található ilyen forduló: {roundNumber}");
+                throw new Exception($"Nincs érvényes továbbjutási szabály a(z) {groupSize}-es csoportokra.");
             }
 
-            var players = new Dictionary<int, string>();
-            foreach (var match in round.Matches)
+            // Az alap továbbjutók hozzáadása
+            foreach (var position in rule.Criteria.AdvancingPositions)
             {
-                foreach (var player in match.Players)
+                if (position <= players.Count)
                 {
-                    if (!players.ContainsValue(player))
-                        players.Add(players.Count + 1, player);
+                    advancingPlayers.Add(players[position - 1]);
                 }
             }
-            return players;
-        }
 
-        public class Round
-        {
-            public int RoundNumber { get; set; }
-            public string Descripton { get; set; }
-            public List<Match> Matches { get; set; }
-        }
+            // Ha a szabály speciális továbbjutókat is tartalmaz, hozzáadjuk azokat
+            if (rule.Criteria.Special)
+            {
+                // Az "X" jelöléssel adunk hozzá speciális továbbjutókat
+                foreach (var position in rule.Criteria.AdvancingPositions)
+                {
+                    if (position <= players.Count)
+                    {
+                        advancingPlayers.Add($"X{position}");
+                    }
+                }
+            }
 
-        public class Match
-        {
-            public List<string> Players { get; set; }
-
-            public int? Table { get; set; }
-
-            public string MatchType { get; set; }
+            return advancingPlayers;
         }
 
         public string GetSchemaFilePath(int totalPlayers, int groupSize)
@@ -69,6 +75,35 @@ namespace jsonBetolto
                 return "schema/" + schemaPath;
             }
             throw new ArgumentException($"Nincs séma ehhez: {totalPlayers} játékos és {groupSize}-es csoport");
+        }
+
+        public class Round
+        {
+            public int RoundNumber { get; set; }
+            public string Description { get; set; }
+            public List<Match> Matches { get; set; }
+            public List<QualificationRule> QualificationRules { get; set; }
+        }
+
+        public class Match
+        {
+            public string Group { get; set; }
+            public List<string> Players { get; set; }
+            public int? Table { get; set; }
+            public string MatchType { get; set; }
+        }
+
+        public class QualificationRule
+        {
+            public string Description { get; set; }
+            public Criteria Criteria { get; set; }
+        }
+
+        public class Criteria
+        {
+            public int GroupSize { get; set; }
+            public List<int> AdvancingPositions { get; set; }
+            public bool Special { get; set; }
         }
     }
 
@@ -92,9 +127,24 @@ namespace jsonBetolto
                 var loadedSchema = JsonConvert.DeserializeObject<TournamentSchema>(schemaJson);
 
                 Console.WriteLine("\nVerseny neve: " + loadedSchema.TournamentName);
+
+                // Kiírjuk a továbbjutási szabályokat az 1. forduló alapján
+                var firstRound = loadedSchema.Rounds.FirstOrDefault(r => r.RoundNumber == 1);
+                if (firstRound != null)
+                {
+                    Console.WriteLine("\nTovábbjutási szabályok az 1. fordulóban:");
+                    foreach (var rule in firstRound.QualificationRules)
+                    {
+                        Console.WriteLine($"  - Leírás: {rule.Description}");
+                        Console.WriteLine($"    Csoportméret: {rule.Criteria.GroupSize}");
+                        Console.WriteLine($"    Továbbjutók helyezései: {string.Join(", ", rule.Criteria.AdvancingPositions)}");
+                        Console.WriteLine($"    Speciális: {(rule.Criteria.Special ? "Igen" : "Nem")}");
+                    }
+                }
+
                 foreach (var round in loadedSchema.Rounds)
                 {
-                    Console.WriteLine($"\n{round.RoundNumber}. forduló: {round.Descripton}");
+                    Console.WriteLine($"\n{round.RoundNumber}. forduló");
                     foreach (var match in round.Matches)
                     {
                         Console.WriteLine("  Meccs:");
