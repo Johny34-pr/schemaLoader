@@ -7,34 +7,39 @@ Console.Clear();
 
 bool showMenu = true;
 
-while (showMenu)
-{
-    ShowMenu();
-    int userChoice = Convert.ToInt16(Console.ReadLine());
+Menu(showMenu);
 
-    switch (userChoice)
+static void Menu(bool showMenu = true)
+{
+    while (showMenu)
     {
-        case 1:
-            showMenu = false;
-            Console.Clear();
-            Console.ForegroundColor = ConsoleColor.Green;
-            TournamentStart();
-            break;
-        case 2:
-            showMenu = false;
-            Console.Clear();
-            Console.ForegroundColor = ConsoleColor.Green;
-            break;
-        case 3:
-            Console.Clear();
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("Kilépés...");
-            Environment.Exit(0);
-            break;
-        default:
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("\nÉrvénytelen választás! Kérlek próbáld újra.");
-            break;
+        ShowMenu();
+        int userChoice = Convert.ToInt16(Console.ReadLine());
+
+        switch (userChoice)
+        {
+            case 1:
+                showMenu = false;
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Gray;
+                TournamentStart();
+                break;
+            case 2:
+                showMenu = false;
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Green;
+                break;
+            case 3:
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("Kilépés...");
+                Environment.Exit(0);
+                break;
+            default:
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("\nÉrvénytelen választás! Kérlek próbáld újra.");
+                break;
+        }
     }
 }
 
@@ -53,6 +58,11 @@ static void TournamentStart()
     Console.Clear();
 
     manager.ProcessTournament(playerNumber, groupNumber);
+    Console.WriteLine("A menübe visszalépéshez nyomj meg egy gombot!");
+
+    Console.ReadKey();
+
+    Menu();
 }
 static void ShowMenu()
 {
