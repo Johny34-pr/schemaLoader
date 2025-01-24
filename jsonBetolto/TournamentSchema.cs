@@ -24,7 +24,7 @@ namespace jsonBetolto
             return JsonConvert.DeserializeObject<TournamentSchema>(json);
         }
 
-        public List<string> GetAdvancingPlayers(string group, List<string> players, int groupSize)
+        public List<string> GetAdvancingPlayers(string group, List<string> players, int? groupSize)
         {
             var advancingPlayers = new List<string>();
 
@@ -101,9 +101,12 @@ namespace jsonBetolto
 
         public class Criteria
         {
-            public int GroupSize { get; set; }
+            public int? GroupSize { get; set; } // Nullable int a GroupSize típus számára
             public List<int> AdvancingPositions { get; set; }
             public bool Special { get; set; }
+            public int? Limit { get; set; }
+
+            public List<string> AssignedAdvancingPositions { get; set; } // AssignedAdvancingPositions hozzáadása
         }
     }
 
@@ -136,9 +139,16 @@ namespace jsonBetolto
                     foreach (var rule in firstRound.QualificationRules)
                     {
                         Console.WriteLine($"  - Leírás: {rule.Description}");
-                        Console.WriteLine($"    Csoportméret: {rule.Criteria.GroupSize}");
+                        Console.WriteLine($"    Csoportméret: {(rule.Criteria.GroupSize.HasValue ? rule.Criteria.GroupSize.Value.ToString() : groupSize)}");
                         Console.WriteLine($"    Továbbjutók helyezései: {string.Join(", ", rule.Criteria.AdvancingPositions)}");
                         Console.WriteLine($"    Speciális: {(rule.Criteria.Special ? "Igen" : "Nem")}");
+                        Console.WriteLine($"    Limit: {(rule.Criteria.Limit.HasValue ? rule.Criteria.Limit.Value.ToString() : "Nincs limit")}");
+
+                        // Kiírjuk az AssignedAdvancingPositions mezőt
+                        if (rule.Criteria.AssignedAdvancingPositions != null && rule.Criteria.AssignedAdvancingPositions.Any())
+                        {
+                            Console.WriteLine($"    Assigned Advancing Positions: {string.Join(", ", rule.Criteria.AssignedAdvancingPositions)}");
+                        }
                     }
                 }
 
