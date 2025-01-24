@@ -1,0 +1,394 @@
+{
+    "Rounds": [
+        {
+            "RoundNumber": 1,
+            "Description": "9 x 4-es, 3 x 5-ös csoportok 8 asztalon, meccs sorrend",
+            "Tables": 8,
+            "QualificationRules": [
+                {
+                    "Description": "Csoportonként az első két helyezett jut tovább",
+                    "Criteria": {
+                        "GroupSize": null,
+                        "AdvancingPositions": [1, 2]
+                    }
+                },
+                {
+                    "Description": "Az 5-ös csoportok harmadik helyezettjei speciális továbbjutók (X1, X2, X3)",
+                    "Criteria": {
+                        "GroupSize": 5,
+                        "AdvancingPositions": [3],
+                        "Special": true,
+                        "AssignedAdvancingPositions": ["X1", "X2", "X3"]
+                    }
+                },
+                {
+                    "Description": "A 4-es csoportok legjobb 5 harmadik helyezettjei speciális továbbjutók (X4–X8)",
+                    "Criteria": {
+                        "GroupSize": 4,
+                        "AdvancingPositions": [3],
+                        "Special": true,
+                        "Limit": 5,
+                        "AssignedAdvancingPositions": ["X4", "X5", "X6", "X7", "X8"]
+                    }
+                }
+            ],
+            "Matches": [
+                {
+                    "Group": "A",
+                    "Players": [
+                        "A1",
+                        "A2",
+                        "A3",
+                        "A4",
+                        "A5"
+                    ]
+                },
+                {
+                    "Group": "B",
+                    "Players": [
+                        "B1",
+                        "B2",
+                        "B3",
+                        "B4"
+                    ]
+                },
+                {
+                    "Group": "C",
+                    "Players": [
+                        "C1",
+                        "C2",
+                        "C3",
+                        "C4"
+                    ]
+                },
+                {
+                    "Group": "D",
+                    "Players": [
+                        "D1",
+                        "D2",
+                        "D3",
+                        "D4"
+                    ]
+                },
+                {
+                    "Group": "E",
+                    "Players": [
+                        "E1",
+                        "E2",
+                        "E3",
+                        "E4"
+                    ]
+                },
+                {
+                    "Group": "F",
+                    "Players": [
+                        "F1",
+                        "F2",
+                        "F3",
+                        "F4"
+                    ]
+                },
+                {
+                    "Group": "G",
+                    "Players": [
+                        "G1",
+                        "G2",
+                        "G3",
+                        "G4"
+                    ]
+                },
+                {
+                    "Group": "H",
+                    "Players": [
+                        "H1",
+                        "H2",
+                        "H3",
+                        "H4"
+                    ]
+                },
+                {
+                    "Group": "I",
+                    "Players": [
+                        "I1",
+                        "I2",
+                        "I3",
+                        "I4"
+                    ]
+                },
+                {
+                    "Group": "J",
+                    "Players": [
+                        "J1",
+                        "J2",
+                        "J3",
+                        "J4"
+                    ]
+                },
+                {
+                    "Group": "K",
+                    "Players": [
+                        "K1",
+                        "K2",
+                        "K3",
+                        "K4",
+                        "K5"
+                    ]
+                },
+                {
+                    "Group": "L",
+                    "Players": [
+                        "L1",
+                        "L2",
+                        "L3",
+                        "L4",
+                        "L5"
+                    ]
+                }
+            ]
+        },
+        {
+            "RoundNumber": 2,
+            "Description": "Továbbjutók meccseinek sorrendje",
+            "Matches": [
+                {
+                    "Group": "A1",
+                    "Players": [
+                        "A1",
+                        "L2"
+                    ]
+                },
+                {
+                    "Group": "B1",
+                    "Players": [
+                        "B1",
+                        "K2"
+                    ]
+                },
+                {
+                    "Group": "C1",
+                    "Players": [
+                        "C1",
+                        "J2"
+                    ]
+                },
+                {
+                    "Group": "D1",
+                    "Players": [
+                        "D1",
+                        "I2"
+                    ]
+                },
+                {
+                    "Group": "E1",
+                    "Players": [
+                        "E1",
+                        "X1"
+                    ]
+                },
+                {
+                    "Group": "F1",
+                    "Players": [
+                        "F1",
+                        "X2"
+                    ]
+                },
+                {
+                    "Group": "G1",
+                    "Players": [
+                        "G1",
+                        "X3"
+                    ]
+                },
+                {
+                    "Group": "H1",
+                    "Players": [
+                        "H1",
+                        "X4"
+                    ]
+                },
+                {
+                    "Group": "I1",
+                    "Players": [
+                        "I1",
+                        "X5"
+                    ]
+                },
+                {
+                    "Group": "J1",
+                    "Players": [
+                        "J1",
+                        "X6"
+                    ]
+                },
+                {
+                    "Group": "K1",
+                    "Players": [
+                        "K1",
+                        "X7"
+                    ]
+                },
+                {
+                    "Group": "L1",
+                    "Players": [
+                        "L1",
+                        "X8"
+                    ]
+                },
+                {
+                    "Group": "M1",
+                    "Players": [
+                        "D2",
+                        "E2"
+                    ]
+                },
+                {
+                    "Group": "N1",
+                    "Players": [
+                        "C2",
+                        "F2"
+                    ]
+                },
+                {
+                    "Group": "O1",
+                    "Players": [
+                        "B2",
+                        "G2"
+                    ]
+                },
+                {
+                    "Group": "P1",
+                    "Players": [
+                        "A2",
+                        "H2"
+                    ]
+                }
+            ]
+        },
+        {
+            "RoundNumber": 3,
+            "Description": "Továbbjutók egymás ellen játszanak",
+            "Matches": [
+                {   "Group": "A1",
+                    "Players": [
+                        "A1",
+                        "B1"
+                    ]
+                },
+                {   "Group": "B1",
+                    "Players": [
+                        "C1",
+                        "D1"
+                    ]
+                },
+                {   "Group": "C1",
+                    "Players": [
+                        "E1",
+                        "F1"
+                    ]
+                },
+                {   "Group": "D1",
+                    "Players": [
+                        "G1",
+                        "H1"
+                    ]
+                },
+                {   "Group": "E1",
+                    "Players": [
+                        "I1",
+                        "J1"
+                    ]
+                },
+                {   "Group": "F1",
+                    "Players": [
+                        "K1",
+                        "L1"
+                    ]
+                },
+                {   "Group": "G1",
+                    "Players": [
+                        "M1",
+                        "N1"
+                    ]
+                },
+                {   "Group": "H1",
+                    "Players": [
+                        "O1",
+                        "P1"
+                    ]
+                }
+            ]
+        },
+        {
+            "RoundNumber": 4,
+            "Description": "Továbbjutók egymás ellen játszanak",
+            "Matches": [
+                {   "Group": "A1",
+                    "Players": [
+                        "A1",
+                        "B1"
+                    ]
+                },
+                {   "Group": "B1",
+                    "Players": [
+                        "C1",
+                        "D1"
+                    ]
+                },
+                {   "Group": "C1",
+                    "Players": [
+                        "E1",
+                        "F1"
+                    ]
+                },
+                {   "Group": "D1",
+                    "Players": [
+                        "G1",
+                        "H1"
+                    ]
+                }
+            ]
+        },
+        {
+            "RoundNumber": 5,
+            "Description": "Elődöntők",
+            "Matches": [
+                {   "Group": "A",
+                    "Players": [
+                        "A1",
+                        "B1"
+                    ],
+                    "Table": 2
+                },
+                {   "Group": "B",
+                    "Players": [
+                        "C1",
+                        "D1"
+                    ],
+                    "Table": 1
+                }
+            ]
+        },
+        {
+            "RoundNumber": 6,
+            "Description": "Döntő és helyosztók",
+            "Matches": [
+                {   "Group": "A1",
+                    "Players": [
+                        "A1",
+                        "B1"
+                    ],
+                    "Table": 1,
+                    "MatchType": "Final"
+                },
+                {   "Group": "B1",
+                    "Players": [
+                        "A2",
+                        "B2"
+                    ],
+                    "Table": 2,
+                    "MatchType": "ThirdPlace"
+                }
+            ]
+        }
+    ]
+}
