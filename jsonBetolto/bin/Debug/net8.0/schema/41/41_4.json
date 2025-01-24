@@ -21,12 +21,21 @@
                     }
                 },
                 {
-                    "Description": "5-ös csoportok harmadik és negyedik helyezettjei speciális továbbjutók (X5-X14)",
+                    "Description": "5-ös csoportok harmadi helyezettjei speciális továbbjutók (X5-X9)",
                     "Criteria": {
                         "GroupSize": 5,
                         "AdvancingPositions": [3, 4],
                         "Special": true,
-                        "AssignedAdvancingPositions": ["X5", "X6", "X7", "X8", "X9", "X10", "X11", "X12", "X13", "X14"]
+                        "AssignedAdvancingPositions": ["X5", "X6", "X7", "X8", "X9"]
+                    }
+                },
+                {
+                    "Description": "5-ös csoportok negyedik helyezettjei speciális továbbjutók (X10-X14)",
+                    "Criteria": {
+                        "GroupSize": 5,
+                        "AdvancingPositions": [3, 4],
+                        "Special": true,
+                        "AssignedAdvancingPositions": ["X10", "X11", "X12", "X13", "X14"]
                     }
                 }
             ],

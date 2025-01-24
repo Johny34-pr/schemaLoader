@@ -22,7 +22,16 @@
                     }
                 },
                 {
-                    "Description": "5-ös csoportok harmadik helyezettjei speciális továbbjutók (X9, X10), negyedik helyezettjei speciális továbbjutók (X11, X12)",
+                    "Description": "5-ös csoportok harmadik helyezettjei speciális továbbjutók (X9, X10)",
+                    "Criteria": {
+                        "GroupSize": 5,
+                        "AdvancingPositions": [3],
+                        "Special": true,
+                        "AssignedAdvancingPositions": ["X9", "X10"]
+                    }
+                },
+                {
+                    "Description": "5-ös csoportok negyedik helyezettjei speciális továbbjutók (X11, X12)",
                     "Criteria": {
                         "GroupSize": 5,
                         "AdvancingPositions": [3, 4],
